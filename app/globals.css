@@ -1,0 +1,1271 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500;600&family=Parisienne&display=swap');
+
+:root {
+  --burgundy: #6c2335;
+  --burgundy-deep: #4d1725;
+  --cream: #f4efe6;
+  --paper: #fbf8f2;
+  --champagne: #c7aa70;
+  --taupe: #8d7964;
+  --ink: #352d28;
+  --line: rgba(108,35,53,.18);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: Montserrat, sans-serif;
+}
+
+button,
+a {
+  font: inherit;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+}
+
+.container {
+  width: min(980px, calc(100% - 34px));
+  margin: auto;
+}
+
+.site {
+  overflow: hidden;
+}
+
+.serif {
+  font-family: "Cormorant Garamond", serif;
+}
+
+.script {
+  font-family: "Parisienne", cursive;
+}
+
+
+/* =========================================
+   ANIMACIONES
+   ========================================= */
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(.94);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes sparkle {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(.25) rotate(0deg);
+  }
+
+  30% {
+    opacity: .18;
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.45) rotate(45deg);
+  }
+
+  70% {
+    opacity: .35;
+  }
+}
+
+@keyframes invitationReveal {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* =========================================
+   PORTADA
+   ========================================= */
+
+.cover {
+  min-height: 100svh;
+
+  display: grid;
+
+  place-items: center;
+
+  padding: 18px;
+
+  position: relative;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 20% 15%,
+      rgba(199,170,112,.15),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 90% 85%,
+      rgba(108,35,53,.11),
+      transparent 32%
+    ),
+    var(--cream);
+}
+
+.cover-shell {
+  width: min(580px, 100%);
+
+  min-height: calc(100svh - 36px);
+
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-align: center;
+
+  border: 1px solid rgba(141,121,100,.35);
+
+  background: rgba(251,248,242,.55);
+
+  animation: scaleIn .9s ease both;
+
+  z-index: 2;
+}
+
+.cover-shell::before,
+.cover-shell::after {
+  content: "";
+
+  position: absolute;
+
+  pointer-events: none;
+
+  border: 1px solid rgba(199,170,112,.5);
+}
+
+.cover-shell::before {
+  inset: 14px;
+}
+
+.cover-shell::after {
+  inset: 23px;
+
+  border-color: rgba(108,35,53,.12);
+}
+
+.cover-inner {
+  position: relative;
+
+  z-index: 3;
+
+  padding: 40px 28px;
+}
+
+.kicker,
+.eyebrow {
+  text-transform: uppercase;
+
+  letter-spacing: .32em;
+
+  font-size: 9px;
+
+  color: var(--taupe);
+}
+
+.cover-names {
+  margin: 31px 0 22px;
+
+  color: var(--burgundy);
+
+  font-size: clamp(66px, 16vw, 108px);
+
+  line-height: .78;
+}
+
+.cover-names .amp {
+  color: var(--champagne);
+
+  font-size: .42em;
+
+  margin: 15px 0;
+}
+
+.cover-date {
+  text-transform: uppercase;
+
+  letter-spacing: .3em;
+
+  font-size: 11px;
+
+  color: var(--taupe);
+}
+
+.cover-heart {
+  color: var(--champagne);
+
+  font-size: 22px;
+
+  margin-top: 22px;
+}
+
+.open {
+  margin-top: 40px;
+
+  border: 1px solid var(--champagne);
+
+  background: var(--burgundy);
+
+  color: #fff;
+
+  padding: 15px 28px;
+
+  letter-spacing: .22em;
+
+  text-transform: uppercase;
+
+  font-size: 9px;
+
+  cursor: pointer;
+
+  transition: .25s;
+
+  box-shadow:
+    0 10px 28px rgba(108,35,53,.14);
+}
+
+.open:hover {
+  transform: translateY(-2px);
+}
+
+.open .tiny {
+  display: block;
+
+  opacity: .65;
+
+  font-size: 8px;
+
+  margin-top: 5px;
+
+  letter-spacing: .12em;
+}
+
+
+/* =========================================
+   DESTELLOS
+   ========================================= */
+
+.cover-sparkles {
+  position: absolute;
+
+  inset: 0;
+
+  overflow: hidden;
+
+  pointer-events: none;
+
+  z-index: 1;
+}
+
+.sparkle {
+  position: absolute;
+
+  width: 4px;
+  height: 4px;
+
+  border-radius: 50%;
+
+  background: #fff;
+
+  opacity: 0;
+
+  box-shadow:
+    0 0 7px 2px rgba(255,255,255,.98),
+    0 0 18px 5px rgba(255,225,175,.82);
+
+  animation:
+    sparkle 3.2s ease-in-out infinite;
+}
+
+.sparkle::before,
+.sparkle::after {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  transform:
+    translate(-50%, -50%);
+
+  background: rgba(255,255,255,.96);
+}
+
+.sparkle::before {
+  width: 1px;
+
+  height: 27px;
+}
+
+.sparkle::after {
+  width: 27px;
+
+  height: 1px;
+}
+
+.sparkle-2 {
+  width: 3px;
+  height: 3px;
+}
+
+.sparkle-3 {
+  width: 2px;
+  height: 2px;
+}
+
+.sparkle-4 {
+  width: 5px;
+  height: 5px;
+}
+
+.sparkle-5 {
+  width: 3px;
+  height: 3px;
+}
+
+
+/* =========================================
+   BOTÓN REGRESAR
+   ========================================= */
+
+.back-to-top {
+  position: sticky;
+
+  top: 14px;
+
+  z-index: 30;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 10px;
+
+  margin: 0 auto;
+
+  transform: translateY(14px);
+
+  padding: 7px 16px 7px 8px;
+
+  border:
+    1px solid
+    rgba(199,170,112,.7);
+
+  border-radius: 999px;
+
+  background:
+    rgba(251,248,242,.92);
+
+  color: var(--burgundy);
+
+  backdrop-filter: blur(12px);
+
+  -webkit-backdrop-filter: blur(12px);
+
+  cursor: pointer;
+
+  font-family: Montserrat, sans-serif;
+
+  font-size: 8px;
+
+  letter-spacing: .2em;
+
+  box-shadow:
+    0 8px 24px
+    rgba(77,23,37,.08);
+
+  transition: .25s;
+}
+
+.back-to-top:hover {
+  transform: translateY(10px);
+
+  box-shadow:
+    0 12px 30px
+    rgba(77,23,37,.16);
+}
+
+.back-circle {
+  width: 30px;
+
+  height: 30px;
+
+  display: grid;
+
+  place-items: center;
+
+  border:
+    1px solid
+    var(--champagne);
+
+  border-radius: 50%;
+
+  font-size: 18px;
+
+  line-height: 1;
+}
+
+
+/* =========================================
+   SECCIONES
+   ========================================= */
+
+.section {
+  padding: 94px 0;
+
+  text-align: center;
+}
+
+.paper {
+  background: var(--paper);
+}
+
+.burgundy {
+  background: var(--burgundy);
+
+  color: #fffaf3;
+}
+
+.taupe {
+  background: var(--taupe);
+
+  color: #fffaf3;
+}
+
+.heading-script {
+  font-family: "Parisienne", cursive;
+
+  color: var(--burgundy);
+
+  font-size: clamp(52px, 12vw, 88px);
+
+  line-height: 1;
+
+  margin: 10px 0 28px;
+}
+
+.burgundy .heading-script,
+.taupe .heading-script {
+  color: #fffaf3;
+}
+
+.copy {
+  max-width: 720px;
+
+  margin: 0 auto;
+
+  font-size: 12px;
+
+  line-height: 2.15;
+
+  letter-spacing: .06em;
+}
+
+.orn {
+  color: var(--champagne);
+
+  margin: 23px 0;
+
+  font-size: 22px;
+}
+
+
+/* =========================================
+   MÚSICA
+   ========================================= */
+
+.music {
+  max-width: 620px;
+
+  margin: 38px auto 0;
+
+  border:
+    1px solid
+    rgba(199,170,112,.55);
+
+  padding: 25px;
+
+  background:
+    rgba(255,255,255,.3);
+}
+
+.music .title {
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size: 29px;
+}
+
+.music .artist {
+  text-transform: uppercase;
+
+  letter-spacing: .2em;
+
+  font-size: 8px;
+
+  color: var(--taupe);
+
+  margin-top: 5px;
+}
+
+
+/* =========================================
+   BOTÓN ESCUCHAR CANCIÓN
+   ========================================= */
+
+.music-btn {
+  position: relative;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 12px;
+
+  margin-top: 24px;
+
+  padding: 15px 30px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--burgundy-deep),
+      var(--burgundy)
+    );
+
+  color: #fffaf3;
+
+  border:
+    1px solid
+    var(--champagne);
+
+  border-radius: 2px;
+
+  font-family:
+    "Montserrat",
+    sans-serif;
+
+  font-size: 9px;
+
+  font-weight: 500;
+
+  letter-spacing: .22em;
+
+  text-transform: uppercase;
+
+  box-shadow:
+    0 8px 22px
+    rgba(77,23,37,.16),
+
+    inset 0 0 0 1px
+    rgba(255,255,255,.06);
+
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease,
+    background .3s ease;
+}
+
+.music-btn:hover {
+  transform: translateY(-2px);
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--burgundy),
+      #7e2b42
+    );
+
+  box-shadow:
+    0 12px 28px
+    rgba(77,23,37,.24),
+
+    0 0 0 3px
+    rgba(199,170,112,.10);
+}
+
+.music-btn:active {
+  transform: translateY(0);
+}
+
+.play-icon {
+  width: 27px;
+
+  height: 27px;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border:
+    1px solid
+    rgba(199,170,112,.8);
+
+  border-radius: 50%;
+
+  color: var(--champagne);
+
+  font-size: 8px;
+
+  padding-left: 1px;
+
+  background:
+    rgba(255,255,255,.06);
+}
+
+
+/* =========================================
+   PADRES
+   ========================================= */
+
+.parents {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 45px;
+
+  max-width: 780px;
+
+  margin: 40px auto 0;
+}
+
+.parents h3 {
+  text-transform: uppercase;
+
+  letter-spacing: .24em;
+
+  font-size: 9px;
+
+  color: var(--taupe);
+
+  font-weight: 500;
+}
+
+.parents p {
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size: 23px;
+
+  margin: 9px 0;
+}
+
+
+/* =========================================
+   EVENTO
+   ========================================= */
+
+.event {
+  max-width: 750px;
+
+  margin: 35px auto 0;
+
+  border:
+    1px solid
+    rgba(255,250,243,.35);
+
+  padding: 42px 25px;
+}
+
+.event-day {
+  text-transform: uppercase;
+
+  letter-spacing: .32em;
+
+  font-size: 10px;
+}
+
+.event-date {
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size: 66px;
+
+  margin: 12px 0;
+}
+
+.event-place {
+  font-family:
+    "Parisienne",
+    cursive;
+
+  font-size: 48px;
+}
+
+.event-info {
+  font-size: 11px;
+
+  line-height: 1.9;
+
+  letter-spacing: .05em;
+}
+
+.map-btn {
+  display: inline-block;
+
+  margin-top: 20px;
+
+  padding: 13px 24px;
+
+  border:
+    1px solid
+    var(--champagne);
+
+  background: #fffaf3;
+
+  color: var(--taupe);
+
+  font-size: 9px;
+
+  text-transform: uppercase;
+
+  letter-spacing: .18em;
+}
+
+
+/* =========================================
+   CUENTA REGRESIVA
+   ========================================= */
+
+.countdown {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, 1fr);
+
+  max-width: 700px;
+
+  margin: 35px auto 0;
+
+  gap: 8px;
+}
+
+.count {
+  padding: 18px 5px;
+
+  border-top:
+    1px solid
+    var(--line);
+
+  border-bottom:
+    1px solid
+    var(--line);
+}
+
+.count b {
+  display: block;
+
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size: 48px;
+
+  font-weight: 500;
+}
+
+.count span {
+  text-transform: uppercase;
+
+  font-size: 8px;
+
+  letter-spacing: .18em;
+}
+
+
+/* =========================================
+   VERSÍCULO
+   ========================================= */
+
+.quote {
+  max-width: 750px;
+
+  margin: auto;
+}
+
+.quote-text {
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size:
+    clamp(25px,5vw,39px);
+
+  line-height: 1.38;
+}
+
+.quote-ref {
+  margin-top: 22px;
+
+  text-transform: uppercase;
+
+  letter-spacing: .25em;
+
+  font-size: 9px;
+
+  color: var(--champagne);
+}
+
+
+/* =========================================
+   GALERÍA
+   ========================================= */
+
+.gallery {
+  display: grid;
+
+  grid-template-columns:
+    1.15fr .85fr;
+
+  gap: 10px;
+
+  margin-top: 35px;
+}
+
+.gallery img {
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover;
+
+  display: block;
+
+  min-height: 300px;
+}
+
+.gallery .tall {
+  grid-row: span 2;
+
+  min-height: 620px;
+}
+
+.gallery .wide {
+  grid-column: 1 / -1;
+
+  max-height: 500px;
+}
+
+
+/* =========================================
+   CÓDIGO DE VESTIMENTA
+   ========================================= */
+
+.dress-grid {
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap: 45px;
+
+  align-items: center;
+
+  max-width: 850px;
+
+  margin: 35px auto 0;
+}
+
+
+/* =========================================
+   BLOQUE VISUAL FORMAL
+   ========================================= */
+
+.dress-photo {
+  position: relative;
+
+  min-height: 390px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 10px;
+
+  border:
+    1px solid
+    rgba(199,170,112,.7);
+
+  background:
+    linear-gradient(
+      145deg,
+      #f7f1e7,
+      #eee2d1
+    );
+
+  box-shadow:
+    0 20px 45px
+    rgba(48,25,28,.14);
+
+  overflow: hidden;
+}
+
+
+/* DETALLE DECORATIVO */
+
+.dress-photo::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 14px;
+
+  border:
+    1px solid
+    rgba(199,170,112,.45);
+
+  pointer-events: none;
+}
+
+
+/* MARCO INTERIOR */
+
+.dress-photo::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 24px;
+
+  border:
+    1px solid
+    rgba(108,35,53,.10);
+
+  pointer-events: none;
+}
+
+
+/* =========================================
+   ETIQUETA FORMAL
+   ========================================= */
+
+.dress-photo-label {
+  position: relative;
+
+  z-index: 3;
+
+  width: 78%;
+
+  margin-bottom: 25px;
+
+  padding: 18px 20px;
+
+  text-align: center;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--burgundy-deep),
+      var(--burgundy)
+    );
+
+  border:
+    1px solid
+    var(--champagne);
+
+  color: #fff;
+
+  box-shadow:
+    0 12px 30px
+    rgba(77,23,37,.18);
+}
+
+.dress-photo-label span {
+  font-family:
+    "Parisienne",
+    cursive;
+
+  font-size: 52px;
+
+  line-height: 1;
+
+  color: #fffaf3;
+}
+
+
+/* =========================================
+   TEXTO VESTIMENTA
+   ========================================= */
+
+.dress-copy {
+  text-align: left;
+
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size: 24px;
+
+  line-height: 1.5;
+}
+
+.dress-copy strong {
+  color: var(--burgundy);
+
+  font-weight: 500;
+}
+
+
+/* =========================================
+   CONFIRMACIÓN
+   ========================================= */
+
+.confirm-box {
+  max-width: 660px;
+
+  margin: 35px auto 0;
+
+  padding: 38px 25px;
+
+  background: var(--paper);
+
+  color: var(--ink);
+
+  box-shadow:
+    0 20px 55px
+    rgba(48,25,28,.16);
+}
+
+.confirm-btn {
+  display: inline-block;
+
+  margin-top: 20px;
+
+  padding: 13px 24px;
+
+  border:
+    1px solid
+    var(--champagne);
+
+  background: var(--burgundy);
+
+  color: #fff;
+
+  font-size: 9px;
+
+  text-transform: uppercase;
+
+  letter-spacing: .18em;
+}
+
+.small {
+  font-size: 9px;
+
+  letter-spacing: .12em;
+
+  line-height: 1.9;
+
+  color: var(--taupe);
+}
+
+
+/* =========================================
+   ADULTOS
+   ========================================= */
+
+.adults {
+  max-width: 730px;
+
+  margin: auto;
+}
+
+.adults-title {
+  text-transform: uppercase;
+
+  letter-spacing: .23em;
+
+  font-size: 10px;
+
+  margin-bottom: 22px;
+}
+
+
+/* =========================================
+   FOOTER
+   ========================================= */
+
+.footer {
+  padding: 80px 20px;
+
+  text-align: center;
+
+  background: var(--burgundy);
+
+  color: #fffaf3;
+}
+
+.footer .names {
+  font-family:
+    "Parisienne",
+    cursive;
+
+  font-size: 66px;
+}
+
+.footer p {
+  text-transform: uppercase;
+
+  letter-spacing: .24em;
+
+  font-size: 8px;
+
+  opacity: .72;
+}
+
+
+/* =========================================
+   CELULAR
+   ========================================= */
+
+@media (max-width: 700px) {
+
+  .section {
+    padding: 74px 0;
+  }
+
+  .parents,
+  .dress-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dress-copy {
+    text-align: center;
+  }
+
+  .dress-photo {
+    min-height: 300px;
+  }
+
+  .dress-photo-label {
+    width: 75%;
+
+    margin-bottom: 20px;
+
+    padding: 15px 18px;
+  }
+
+  .dress-photo-label span {
+    font-size: 44px;
+  }
+
+  .gallery {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .gallery .tall {
+    min-height: 450px;
+  }
+
+  .gallery img {
+    min-height: 220px;
+  }
+
+  .count b {
+    font-size: 35px;
+  }
+
+  .event-date {
+    font-size: 53px;
+  }
+
+  .event-place {
+    font-size: 42px;
+  }
+
+  .back-to-top {
+    font-size: 7px;
+
+    letter-spacing: .16em;
+  }
+
+  .music-btn {
+    padding: 14px 22px;
+
+    gap: 10px;
+
+    font-size: 8px;
+
+    letter-spacing: .17em;
+  }
+
+  .play-icon {
+    width: 25px;
+
+    height: 25px;
+
+    font-size: 7px;
+  }
+
+  .footer .names {
+    font-size: 52px;
+  }
+}
+
+
+/* =========================================
+   REDUCIR ANIMACIONES
+   ========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  * {
+    scroll-behavior: auto !important;
+
+    animation: none !important;
+
+    transition: none !important;
+  }
+}
